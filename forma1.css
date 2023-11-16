@@ -1,0 +1,54 @@
+img{
+width: 500px;
+height: 400px;
+}
+body{
+display: flex;
+margin: 100px;
+font-family: Arial, Helvetica, sans-serif;
+}
+.left{
+    flex: 1;
+    background-image: linear-gradient(rgb(21, 83, 255), rgb(64, 185, 255));background-color;
+
+}
+
+.left h1{
+text-align: center;
+color:aliceblue;
+
+}
+.left p{
+text-align: center;
+color:aliceblue;
+}
+.image{
+text-align: center;
+
+
+}
+ .right{
+flex: 2;
+margin: 20px;
+display: flex;
+}
+
+.right h1{
+    color: rgb(0, 81, 255);
+}
+
+.buttons{
+    
+
+
+
+}
+.button1, .button2{display: inline-block;}
+.button3 {
+
+    text-align: end;
+    align-self: flex-end;
+}
+.divider hr{
+    width: 50%;
+}

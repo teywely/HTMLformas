@@ -1,4 +1,7 @@
+
+
 <!DOCTYPE html>
+<html>
 <head> 
     <link rel="stylesheet" href="forma3.css">
 </head>
@@ -10,86 +13,57 @@
         <div class="title">
             <h1>Publiskā datubāze</h1>
         </div>
-        <div class="discription">
-            <p1>Šajā datubāzē Tu vari apskatīt pieejamās vielas un aprīkojumu</p1>
+        <div class="description">
+            <p>Šajā datubāzē Tu vari apskatīt pieejamās vielas un aprīkojumu</p>
         </div>
         <div class="input">
-            <input class="search">
-            <button>Rādīt visu</button>
-            <button>Radit vielas</button>
-            <button>Rádit aprīkojumu</button>
+            <button onclick="showAll()">Rādīt visu</button>
+            <button onclick="showVielas()">Rādīt vielas</button>
+            <button onclick="showInventars()">Rādīt inventāru</button>
         </div>
         <hr> 
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>Nosaukums</th>
-            <th>Tips</th>
-            <th>Apakitips</th>
-            <th>Skaits</th>
-            <th>Svars</th>
-            <th>Komentāri</th>
-        </tr>
-        <tr>
-            <td>KLIO42724</td>
-            <td>Katalizators</td>
-            <td>Aprīkojums</td>
-            <td>Trauks</td>
-            <td>23</td>
-            <td>-</td>
-            <td>Dali komentāri</td>
-        </tr>
-        <tr>
-            <td>KLID42723</td>
-            <td>Birete</td>
-            <td>Aprīkojums</td>
-            <td>Trauks</td>
-            <td>20</td>
-            <td>-</td>
-            <td>Daži komentari</td>
-        </tr>
-        <tr>
-            <td>KL1042742</td>
-            <td>HCI</td>
-            <td>Viela</td>
-            <td>Skabe</td>
-            <td>19</td>
-            <td>40</td>
-            <td>Dali komentāri</td>
-        </tr>
-        <tr>
-            <td>KLI042724</td>
-            <td>Kolba</td>
-            <td>Aprikojums</td>
-            <td>Trauks</td>
-            <td>20</td>
-            <td>-</td>
-            <td>Daži komentari</td>
-        </tr>
-        <tr>
-            <td>KL1042534</td>
-            <td>Fe</td>
-            <td>Viela</td>
-            <td>Metals</td>
-            <td>48</td>
-            <td>10</td>
-            <td>Dali komentari</td>
-        </tr>
-        <tr>
-            <td>KL442721</td>
-            <td>Na</td>
-            <td>Viela</td>
-            <td>Metals</td>
-            <td>20</td>
-            <td>20</td>
-            <td>Dali komentāri</td>
-        </tr>
-    </table>
+        <table id="data-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nosaukums</th>
+                    <th>Tips</th>
+                    <th>Apakštips</th>
+                    <th>Skaits</th>
+                    <th>Svars/Daudzums</th>
+                    <th>Komentāri</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Dynamic content will be inserted here -->
+            </tbody>
+        </table>
     </div>
     <div class="button3">
         <button>Ziņot par kļūdu</button>
     </div>
 </div>
+
+<!-- Embed JSON data -->
+<script>
+    const inventars = [
+        {"apakstips": "mehāniskie svari", "id": 1, "komentari": "", "nosaukums": "Mehāniskie svari QWS", "skaits": 5, "tips": "svari"},
+        {"apakstips": "elektroniskie svari", "id": 2, "komentari": "Darbojas uz 3 AAA tipa baterijām", "nosaukums": "Elektroniskie svari ES-25", "skaits": 15, "tips": "svari"},
+        {"apakstips": "plītiņa", "id": 3, "komentari": "Strāvas vada garums 1m", "nosaukums": "Elektriskā plītīņa", "skaits": 8, "tips": "sildītājs"},
+        {"apakstips": "trauki", "id": 4, "komentari": "Kolbas īpaši lielām vielām", "nosaukums": "Milzīgās kolbas", "skaits": 100, "tips": "trauks"},
+        {"apakstips": "stikls", "id": 5, "komentari": "Viegli plīstoša", "nosaukums": "Stikla mēģene", "skaits": 12, "tips": "trauks"}
+    ];
+
+    const vielas = [
+        {"apakstips": "sāls", "daudzums": 100, "id": 2, "komentari": "", "mervienibas": "g", "nosaukums": "Kalcija karbonāts CaCO3", "skaits": 25, "tips": "reaģents"},
+        {"apakstips": "hidroksīds", "daudzums": 50, "id": 3, "komentari": "Šķīdums izvedots un sapildīts 2020.09.23", "mervienibas": "ml", "nosaukums": "NaOH šķīdums 10%", "skaits": 45, "tips": "reaģents"},
+        {"apakstips": "skābe", "daudzums": 100, "id": 4, "komentari": "Šķīdums izvedots un sapildīts 2020.10.21", "mervienibas": "ml", "nosaukums": "Sālsskābes HCl šķīdums 20%", "skaits": 24, "tips": "reaģents"},
+        {"apakstips": "test1", "daudzums": 50, "id": 5, "komentari": "Šķīdums izvedots un sapildīts 2020.09.23", "mervienibas": "ml", "nosaukums": "NaOH šķīdums 10%", "skaits": 45, "tips": "reaģents"},
+        {"apakstips": "hidroksīds", "daudzums": 100, "id": 6, "komentari": "Šķīdums izvedots un sapildīts 2020.10.21", "mervienibas": "ml", "nosaukums": "NaOH šķīdums 20%", "skaits": 413, "tips": "reaģents"}
+    ];
+</script>
+
+<script src="forma3.js"></script>
 
 </body>
 </html>
